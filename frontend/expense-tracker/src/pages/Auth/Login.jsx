@@ -1,8 +1,8 @@
 import {React, useState} from 'react'
 import AuthLayout from '../../components/layouts/AuthLayout'
 import {useNavigate, Link} from "react-router-dom";
-import Input from "../../components/Inputs/Input";
-
+import Input from "../../components/Inputs/Input.jsx";
+import { validateEmail } from "../../utils/helper.js";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +10,21 @@ const Login = () => {
 
 
   const navigate = useNavigate();
-  const handleLogin = async (e) =>{}
+  const handleLogin = async (e) =>{
+    e.preventDefault();
+
+    if(!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if(!password) {
+      setError("Please enter the password");
+      return;
+    }
+
+    setError("");
+  }
   return (
     <AuthLayout>
       <div className="lg:w-[70%] h-3/4 md:h-full flex flex-col justify-center">
@@ -22,7 +36,7 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <Input
             value={email} 
-            oonChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             label="Email Address"
             placeholder="john@example.com"
             type="text"
@@ -30,7 +44,7 @@ const Login = () => {
 
           <Input
             value={password} 
-            oonChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             label="Password"
             placeholder="Min 8 Characters"
             type="password"
@@ -48,7 +62,6 @@ const Login = () => {
               SignUp
             </Link>
           </p>
-
         </form>
       </div>
     </AuthLayout>
