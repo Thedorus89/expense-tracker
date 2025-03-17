@@ -3,6 +3,7 @@ import AuthLayout from '../../components/layouts/AuthLayout'
 import {useNavigate, Link} from "react-router-dom";
 import Input from "../../components/Inputs/Input.jsx";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
+import { validateEmail } from '../../utils/helper.js';
 
 const SignUp = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -13,7 +14,28 @@ const SignUp = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleSignUp = async (e) => {}
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
+    let profileImageUrl = "";
+
+    if(!fullName) {
+      setError("Please enter your name");
+      return;
+    }
+
+    if(!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if(!password) {
+      setError("Please enter the password");
+      return;
+    }
+
+    setError("");
+  };
 
   return (
     <AuthLayout>
