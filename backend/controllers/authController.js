@@ -42,7 +42,9 @@ exports.registerUser = async (req,res) => {
 };
 
 // Login User
-exports.loginUser = async (req,res) => {};
+exports.loginUser = async (req,res) => {
+    
+};
 
 // Get User
 exports.getUserInfo = async (req,res) => {};

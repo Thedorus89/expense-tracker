@@ -1,0 +1,31 @@
+# Ignore environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+*.env
+
+# Ignore dependency directories
+node_modules/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore logs and caches
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore build files
+dist/
+build/
+out/
